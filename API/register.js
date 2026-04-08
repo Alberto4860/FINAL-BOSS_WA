@@ -1,12 +1,16 @@
+// URL base de la API para contactos.
 const API_BASE = 'http://localhost:3000/contactos';
 
+// Referencias a elementos de la interfaz.
 const form = document.getElementById('registerForm');
 const alertBox = document.getElementById('alertBox');
 const pageTitle = document.getElementById('pageTitle');
 const submitBtn = document.getElementById('submitBtn');
 
+// Si existe id en la URL, la pagina entra en modo editar.
 const editId = new URLSearchParams(window.location.search).get('id');
 
+// Muestra una alerta temporal al usuario.
 function showAlert(message, type = 'success') {
 	alertBox.textContent = message;
 	alertBox.className = `alert alert-${type}`;
@@ -17,6 +21,7 @@ function showAlert(message, type = 'success') {
 	}, 2500);
 }
 
+// Valida campos obligatorios y formato de telefono/email.
 function validateInputs(nombre, telefono, email) {
 	if (!nombre || !telefono || !email) {
 		throw new Error('Completa todos los campos obligatorios.');
@@ -31,6 +36,7 @@ function validateInputs(nombre, telefono, email) {
 	}
 }
 
+// Envia peticion POST para crear un contacto.
 function createContact(payload) {
 	return fetch(API_BASE, {
 		method: 'POST',
@@ -47,6 +53,7 @@ function createContact(payload) {
 	);
 }
 
+// Consulta un contacto por id.
 function getContactById(id) {
 	return fetch(`${API_BASE}/${id}`, {
 		headers: { 'Content-Type': 'application/json' }
@@ -61,6 +68,7 @@ function getContactById(id) {
 	);
 }
 
+// Envia peticion PUT para actualizar un contacto.
 function updateContact(id, payload) {
 	return fetch(`${API_BASE}/${id}`, {
 		method: 'PUT',
@@ -77,6 +85,7 @@ function updateContact(id, payload) {
 	);
 }
 
+// Si hay id en la URL, carga datos y ajusta textos de la pagina.
 function initEditMode() {
 	if (!editId) return;
 
@@ -94,6 +103,7 @@ function initEditMode() {
 		});
 }
 
+// Maneja el envio del formulario para crear o actualizar.
 form.addEventListener('submit', (event) => {
 	event.preventDefault();
 
@@ -104,6 +114,7 @@ form.addEventListener('submit', (event) => {
 	try {
 		validateInputs(nombre, telefono, email);
 
+		// Si hay id, actualiza el contacto existente.
 		if (editId) {
 			updateContact(editId, { nombre, telefono, email })
 				.then(() => {
@@ -118,6 +129,7 @@ form.addEventListener('submit', (event) => {
 			return;
 		}
 
+		// Si no hay id, crea un contacto nuevo.
 		createContact({ nombre, telefono, email })
 			.then(() => {
 				showAlert('Contacto registrado correctamente.');
@@ -131,4 +143,5 @@ form.addEventListener('submit', (event) => {
 	}
 });
 
+// Inicializa la pagina al cargar.
 initEditMode();

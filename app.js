@@ -1,14 +1,18 @@
+// URL base de la API para contactos.
 const API_BASE = 'http://localhost:3000/contactos';
 
+// Elementos del DOM que se usan durante toda la pagina.
 const tablaContactos = document.getElementById('tablaContactos');
 const searchInput = document.getElementById('searchInput');
 const sortBtn = document.getElementById('sortBtn');
 const showFavBtn = document.getElementById('showFavBtn');
 const alertBox = document.getElementById('alertBox');
 
+// Estados de UI para orden y filtro por favoritos.
 let sortEnabled = false;
 let favoritesOnly = false;
 
+// Muestra una alerta temporal en pantalla.
 function showAlert(message, type = 'success') {
     alertBox.textContent = message;
     alertBox.className = `alert alert-${type}`;
@@ -19,6 +23,7 @@ function showAlert(message, type = 'success') {
     }, 2500);
 }
 
+// Construye el query string segun busqueda/filtros activos.
 function buildQueryParams() {
     const params = new URLSearchParams();
     const q = searchInput.value.trim();
@@ -31,6 +36,7 @@ function buildQueryParams() {
     return queryString ? `?${queryString}` : '';
 }
 
+// Dibuja los renglones de la tabla con los contactos recibidos.
 function renderRows(contactos) {
     if (!contactos.length) {
         tablaContactos.innerHTML = '<tr><td colspan="6" class="text-center text-muted">No hay contactos para mostrar.</td></tr>';
@@ -63,6 +69,7 @@ function renderRows(contactos) {
     });
 }
 
+// Wrapper de fetch: agrega headers y maneja errores de API.
 function fetchJson(url, options = {}) {
     return fetch(url, {
         headers: { 'Content-Type': 'application/json' },
@@ -78,6 +85,7 @@ function fetchJson(url, options = {}) {
     );
 }
 
+// Pide contactos a la API y actualiza la tabla.
 function mostrarContactos() {
     return fetchJson(`${API_BASE}${buildQueryParams()}`)
         .then((data) => {
@@ -88,10 +96,12 @@ function mostrarContactos() {
         });
 }
 
+// Obtiene un contacto individual por id.
 function obtenerContacto(id) {
     return fetchJson(`${API_BASE}/${id}`).then((data) => data.data);
 }
 
+// Elimina un contacto y refresca la lista.
 function eliminarContacto(id) {
     return fetchJson(`${API_BASE}/${id}`, { method: 'DELETE' })
         .then((data) => {
@@ -103,10 +113,12 @@ function eliminarContacto(id) {
         });
 }
 
+// Navega al formulario de edicion con el id en query string.
 function editarContacto(id) {
     window.location.href = `register.html?id=${encodeURIComponent(id)}`;
 }
 
+// Invierte el estado de favorito y guarda el cambio en API.
 function alternarFavorito(id) {
     return obtenerContacto(id)
         .then((contacto) => {
@@ -128,20 +140,24 @@ function alternarFavorito(id) {
         });
 }
 
+// Busca en tiempo real al escribir.
 searchInput.addEventListener('input', mostrarContactos);
 
+// Activa/desactiva orden alfabetico.
 sortBtn.addEventListener('click', () => {
     sortEnabled = !sortEnabled;
     sortBtn.textContent = sortEnabled ? 'Orden A-Z activo' : 'Ordenar A-Z';
     mostrarContactos();
 });
 
+// Activa/desactiva filtro de solo favoritos.
 showFavBtn.addEventListener('click', () => {
     favoritesOnly = !favoritesOnly;
     showFavBtn.textContent = favoritesOnly ? 'Mostrando favoritos' : 'Solo favoritos';
     mostrarContactos();
 });
 
+// Maneja clics de botones dinamicos dentro de la tabla.
 tablaContactos.addEventListener('click', (event) => {
     const button = event.target.closest('button[data-action]');
     if (!button) return;
@@ -164,4 +180,5 @@ tablaContactos.addEventListener('click', (event) => {
     }
 });
 
+// Carga inicial de datos al abrir la pagina.
 mostrarContactos();

@@ -34,13 +34,6 @@
       "telefono": "3152223344",
       "email": "paula.nunez@example.com",
       "favorite": true
-    },
-    {
-      "id": "6",
-      "nombre": "Pene",
-      "telefono": "3309876543",
-      "email": "pene@pene.pene",
-      "favorite": false
     }
   ]
 }

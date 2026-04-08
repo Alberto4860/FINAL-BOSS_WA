@@ -1,0 +1,46 @@
+{
+  "contacts": [
+    {
+      "id": "1",
+      "nombre": "Zoe Alarcon",
+      "telefono": "3001234567",
+      "email": "zoe.alarcon@example.com",
+      "favorite": true
+    },
+    {
+      "id": "2",
+      "nombre": "Bruno Vega",
+      "telefono": "3019876543",
+      "email": "bruno.vega@example.com",
+      "favorite": false
+    },
+    {
+      "id": "3",
+      "nombre": "Ximena Duarte",
+      "telefono": "3025557788",
+      "email": "ximena.duarte@example.com",
+      "favorite": true
+    },
+    {
+      "id": "4",
+      "nombre": "Andres Solis",
+      "telefono": "3204449911",
+      "email": "andres.solis@example.com",
+      "favorite": false
+    },
+    {
+      "id": "5",
+      "nombre": "Paula Nunez",
+      "telefono": "3152223344",
+      "email": "paula.nunez@example.com",
+      "favorite": true
+    },
+    {
+      "id": "6",
+      "nombre": "Pene",
+      "telefono": "3309876543",
+      "email": "pene@pene.pene",
+      "favorite": false
+    }
+  ]
+}

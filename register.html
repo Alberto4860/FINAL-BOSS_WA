@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Registrar Contacto</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+		  rel="stylesheet">
+</head>
+<body>
+	<div class="container mt-4">
+		<div class="d-flex justify-content-between align-items-center mb-3">
+			<div>
+				<h1 id="pageTitle" class="mb-0">Registrar Contacto</h1>
+			</div>
+			<a href="index.html" class="btn btn-outline-secondary">Volver al listado</a>
+		</div>
+
+		<div id="alertBox" class="alert d-none" role="alert"></div>
+
+		<div class="card">
+			<div class="card-body">
+				<form id="registerForm" class="row g-3">
+					<div class="col-md-6">
+						<label for="nombre" class="form-label">Nombre</label>
+						<input type="text" class="form-control" id="nombre" required>
+					</div>
+					<div class="col-md-6">
+						<label for="telefono" class="form-label">Telefono</label>
+						<input type="text" class="form-control" id="telefono" required>
+					</div>
+					<div class="col-md-6">
+						<label for="email" class="form-label">Email</label>
+						<input type="email" class="form-control" id="email" required>
+					</div>
+					<div class="col-12 d-flex gap-2">
+						<button id="submitBtn" type="submit" class="btn btn-primary">Guardar contacto</button>
+						<button type="reset" class="btn btn-outline-secondary">Limpiar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="API/register.js"></script>
+</body>
+</html>

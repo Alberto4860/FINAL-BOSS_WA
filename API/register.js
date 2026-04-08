@@ -27,13 +27,18 @@ function validateInputs(nombre, telefono, email) {
 		throw new Error('Completa todos los campos obligatorios.');
 	}
 
-	if (!/^\d+$/.test(telefono)) {
-		throw new Error('El telefono debe contener solo numeros.');
+	if (!/^\+?\d+$/.test(telefono)) {
+		throw new Error('El telefono debe contener solo numeros y puede iniciar con + (ejemplo: +52, +1).');
 	}
 
 	if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
 		throw new Error('Ingresa un email valido.');
 	}
+
+	if(!/^[\abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@]+$/.test(nombre)) {
+		throw new Error('El nombre no debe contener caracteres especiales o numeros.');
+	}
+
 }
 
 // Envia peticion POST para crear un contacto.

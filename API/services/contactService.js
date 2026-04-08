@@ -25,7 +25,7 @@ function validateEmail(email) {
 
 // Valida que telefono tenga solo numeros.
 function validatePhone(phone) {
-  return /^\d+$/.test(phone);
+  return /^\+?\d+$/.test(phone);
 }
 
 // Quita el campo foto antes de responder al cliente.

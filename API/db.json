@@ -3,7 +3,7 @@
     {
       "id": "1",
       "nombre": "Zoe Alarcon",
-      "telefono": "3001234567",
+      "telefono": "+3001234567",
       "email": "zoe.alarcon@example.com",
       "favorite": true
     },
@@ -34,6 +34,20 @@
       "telefono": "3152223344",
       "email": "paula.nunez@example.com",
       "favorite": true
+    },
+    {
+      "id": "6",
+      "nombre": "Andre De Loera",
+      "telefono": "+524497576121",
+      "email": "st5016@utr.edu.mx",
+      "favorite": false
+    },
+    {
+      "id": "7",
+      "nombre": "Alberrto",
+      "telefono": "+5244987654678",
+      "email": "b@b.com",
+      "favorite": false
     }
   ]
 }
